@@ -1,0 +1,2 @@
+# Talentara
+Bangkit Capstone Project
