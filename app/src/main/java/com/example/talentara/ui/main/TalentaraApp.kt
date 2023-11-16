@@ -44,6 +44,7 @@ import com.example.talentara.ui.navigation.Screen.Order
 import com.example.talentara.ui.navigation.Screen.Profile
 import com.example.talentara.ui.screen.activity.NotificationScreen
 import com.example.talentara.ui.screen.home.HomeScreen
+import com.example.talentara.ui.screen.home.TopBar
 import com.example.talentara.ui.screen.order.OrderScreen
 import com.example.talentara.ui.screen.profile.ProfileScreen
 import com.example.talentara.ui.theme.Greylight
@@ -94,15 +95,14 @@ fun BottomBar(
         modifier = modifier
             .fillMaxWidth()
             .shadow(
-                24.dp,
-                RoundedCornerShape(
-                    topStart = 26.dp,
-                    topEnd = 26.dp,
-                    bottomStart = 0.dp,
-                    bottomEnd = 0.dp
+                16.dp,
+
                 )
-            )
-            .height(65.dp)
+            .height(65.dp),
+        shape = RoundedCornerShape(
+            topStart = 26.dp,
+            topEnd = 26.dp,
+        )
     ) {
         NavigationBar(
             containerColor = White,

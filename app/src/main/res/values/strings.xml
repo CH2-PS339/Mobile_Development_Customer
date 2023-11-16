@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Talentara</string>
+
+    //Bottom Bar
     <string name="home">Home</string>
     <string name="orders">Orders</string>
     <string name="activity">Activity</string>
     <string name="profile">Profile</string>
-    <string name="notification">Notification</string>
+
+    //Category
+    <string name="ui_ux_design_category">UI/UX Design</string>
+    <string name="mobile_dev_category">Mobile\nDevelopment</string>
+    <string name="web_dev_category">Website\nDevelopment</string>
+    <string name="game_dev_category">Game\nDeveloper</string>
 </resources>

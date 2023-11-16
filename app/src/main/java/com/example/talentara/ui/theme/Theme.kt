@@ -24,12 +24,13 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     primary = BlueDark,
     secondary = BlueLight,
-    tertiary = Pink40,
+    tertiary = BlueLight,
     onSecondaryContainer = BlueDark,
     onSurface = BlueDark,
     secondaryContainer = White,
     onSurfaceVariant = GreyDark,
-    background = Greylight
+    background = Greylight,
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
