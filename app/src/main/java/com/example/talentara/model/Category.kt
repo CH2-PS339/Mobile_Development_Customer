@@ -3,8 +3,6 @@ package com.example.talentara.model
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.core.graphics.component1
-import androidx.core.graphics.component2
 import com.example.talentara.R
 
 data class Category(

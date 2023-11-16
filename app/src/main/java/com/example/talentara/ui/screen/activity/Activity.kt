@@ -1,4 +1,4 @@
-package com.example.talentara.ui.screen.order
+package com.example.talentara.ui.screen.activity
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
@@ -46,7 +46,7 @@ import com.example.talentara.R
 import com.example.talentara.ui.theme.TalentaraTheme
 
 @Composable
-fun OrderScreen(
+fun ActiviyScreen(
     modifier: Modifier = Modifier
 ) {
     val (selected, setSelected) = remember {
@@ -60,12 +60,12 @@ fun OrderScreen(
             .fillMaxSize()
     ) {
         item {
-            TopBar(selected, setSelected )
+            TopBar(selected, setSelected)
         }
         item {
             when (selected) {
-                0 -> OngoingTab()
-                1 -> HistoryTab()
+                0 -> ChatTab()
+                1 -> NotificationTab()
             }
         }
     }
@@ -172,9 +172,8 @@ private fun MyTabIndicator(
             ),
     )
 }
-
 @Composable
-fun OngoingTab(
+fun ChatTab(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -191,13 +190,13 @@ fun OngoingTab(
             modifier.size(300.dp)
         )
         Text(
-            text = "Let’s make project with Talentara!"
+            text = "There are no chat yet"
         )
     }
 }
 
 @Composable
-fun HistoryTab(
+fun NotificationTab(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -214,7 +213,7 @@ fun HistoryTab(
             modifier.size(300.dp)
         )
         Text(
-            text = "There are no projects yet"
+            text = "There are no notification yet"
         )
     }
 }
@@ -223,7 +222,7 @@ fun HistoryTab(
 fun TopBar(
     selectedTab: Int,
     onTabSelected: (Int) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier.height(160.dp)
@@ -256,14 +255,14 @@ fun TopBar(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = stringResource(id = R.string.orders),
+                text = stringResource(id = R.string.activity),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondaryContainer,
                 modifier = modifier.padding(bottom = 32.dp)
             )
             CustomTab(
-                items = listOf("Ongoing", "History"),
+                items = listOf("Chat", "Notification"),
                 selectedItemIndex = selectedTab,
                 onClick = onTabSelected,
             )
@@ -273,16 +272,8 @@ fun TopBar(
 
 @Preview(showBackground = true)
 @Composable
-fun OngoingTabPreview() {
+fun ActivityScreenPreview() {
     TalentaraTheme {
-        HistoryTab()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun OrderScreenPreview() {
-    TalentaraTheme {
-        OrderScreen()
+        ActiviyScreen()
     }
 }

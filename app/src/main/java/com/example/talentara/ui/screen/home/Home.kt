@@ -1,6 +1,7 @@
 package com.example.talentara.ui.screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,24 +27,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.talentara.R
 import com.example.talentara.data.Repository
-import com.example.talentara.model.Category
 import com.example.talentara.model.CategoryItem
 import com.example.talentara.model.HomeSection
 import com.example.talentara.model.MenuCategory
-import com.example.talentara.ui.theme.BlueDark
-import com.example.talentara.ui.theme.BlueLight
-import com.example.talentara.ui.theme.MustardDark
 import com.example.talentara.ui.theme.MustardLight
 import com.example.talentara.ui.theme.TalentaraTheme
 
@@ -54,6 +49,7 @@ fun HomeScreen(
     LazyColumn(
         state = rememberLazyListState(),
         contentPadding = PaddingValues(bottom = 8.dp),
+        modifier = modifier.background(MaterialTheme.colorScheme.background)
     ) {
         item {
             TopBar()
@@ -80,65 +76,62 @@ fun TopBar(
     )
 ) {
     val query by viewModel.query
-    Card(
+
+    Column(
         modifier = modifier
             .fillMaxWidth()
             .height(225.dp)
-            .shadow(16.dp),
-        shape = RoundedCornerShape(
-            bottomStart = 26.dp,
-            bottomEnd = 26.dp
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-        )
-    ) {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        listOf(
-                            MaterialTheme.colorScheme.primary,
-                            MaterialTheme.colorScheme.secondary
-                        )
+            .clip(
+                RoundedCornerShape(
+                    bottomStart = 26.dp,
+                    bottomEnd = 26.dp
+                )
+            )
+            .background(
+                brush = Brush.verticalGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.primary,
+                        MaterialTheme.colorScheme.secondary
                     )
                 )
-        ) {
-            Text(
-                text = "TALENTARA",
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                color = MustardLight,
             )
-            Spacer(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(24.dp)
-            )
-            Text(
-                text = "Hi, David",
-                modifier = modifier
-                    .padding(start = 24.dp, end = 24.dp),
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "lorem ipsum",
-                modifier = modifier
-                    .padding(start = 24.dp, end = 24.dp),
-                fontSize = 16.sp,
-            )
-            SearchBar(
-                query = query,
-                onQueryChange = viewModel::search
-            )
-        }
+    ) {
+        Text(
+            text = "TALENTARA",
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center,
+            color = MustardLight,
+        )
+        Spacer(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(24.dp)
+        )
+        Text(
+            text = "Hi, David",
+            modifier = modifier
+                .padding(start = 24.dp, end = 24.dp),
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.secondaryContainer
+        )
+        Text(
+            text = "lorem ipsum",
+            modifier = modifier
+                .padding(start = 24.dp, end = 24.dp),
+            fontSize = 16.sp,
+            color = MaterialTheme.colorScheme.secondaryContainer
+        )
+        SearchBar(
+            query = query,
+            onQueryChange = viewModel::search
+        )
     }
 }
+
 
 @Composable
 fun Advertisement(
@@ -156,7 +149,8 @@ fun Advertisement(
     ) {
         Column(
             modifier = modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .clickable {  },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -207,7 +201,7 @@ fun CategoryColumn(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(bottom = 16.dp)
     ) {
         menuCategories.forEach { category ->
             CategoryItem(category)
