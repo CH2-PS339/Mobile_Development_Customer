@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun SectionText(
@@ -15,8 +16,9 @@ fun SectionText(
 ) {
     Text(
         text = title,
-        style = MaterialTheme.typography.headlineSmall.copy(
-            fontWeight = FontWeight.ExtraBold
-        ),
+        modifier = modifier,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colorScheme.primary
     )
 }

@@ -11,11 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -23,6 +20,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.talentara.R
 import com.example.talentara.data.Repository
 import com.example.talentara.model.Category
@@ -54,7 +53,7 @@ fun HomeScreen(
 ) {
     LazyColumn(
         state = rememberLazyListState(),
-        contentPadding = PaddingValues(bottom = 80.dp),
+        contentPadding = PaddingValues(bottom = 8.dp),
     ) {
         item {
             TopBar()
@@ -63,53 +62,9 @@ fun HomeScreen(
             Advertisement()
         }
         item {
-            Text(
-                text = "Our Services",
-                modifier = modifier
-                    .padding(start = 24.dp, end = 24.dp, top = 16.dp),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-        }
-        item {
-            CategoryItem(
-                category = Category(
-                    R.drawable.uiux_design_category,
-                    R.string.ui_ux_design_category,
-                ),
-                color1 = BlueLight,
-                color2 = BlueDark
-            )
-        }
-        item {
-            CategoryItem(
-                category = Category(
-                    R.drawable.web_dev_category,
-                    R.string.web_dev_category,
-                ),
-                color1 = MustardDark,
-                color2 = MustardLight
-            )
-        }
-        item {
-            CategoryItem(
-                category = Category(
-                    R.drawable.mobile_dev_category,
-                    R.string.mobile_dev_category,
-                ),
-                color1 = BlueDark,
-                color2 = BlueLight
-            )
-        }
-        item {
-            CategoryItem(
-                category = Category(
-                    R.drawable.uiux_design_category,
-                    R.string.game_dev_category,
-                ),
-                color1 = MustardLight,
-                color2 = MustardDark
+            HomeSection(
+                title = "Our Services",
+                content = { CategoryColumn() }
             )
         }
     }
@@ -118,7 +73,7 @@ fun HomeScreen(
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
+    viewModel: HomeViewModel = viewModel(
         factory = ViewModelFactory(
             Repository()
         )
@@ -220,7 +175,7 @@ fun SearchBar(
     onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    androidx.compose.material3.SearchBar(
+    SearchBar(
         query = query,
         onQueryChange = onQueryChange,
         onSearch = {},
@@ -245,18 +200,20 @@ fun SearchBar(
     }
 }
 
-/*@Composable
+@Composable
 fun CategoryColumn(
 ) {
-    LazyColumn(
+    val menuCategories = MenuCategory
+    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        contentPadding = PaddingValues(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.padding(vertical = 16.dp)
     ) {
-        items(MenuCategory, key = { it.textCategory }) { category ->
+        menuCategories.forEach { category ->
             CategoryItem(category)
         }
     }
-}*/
+}
 
 @Preview(showBackground = true)
 @Composable
