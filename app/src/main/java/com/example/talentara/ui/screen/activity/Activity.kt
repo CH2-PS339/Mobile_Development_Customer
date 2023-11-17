@@ -86,7 +86,7 @@ fun CustomTab(
 
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(26.dp))
+            .clip(RoundedCornerShape(20.dp))
             .background(Color.White)
             .height(60.dp),
     ) {
@@ -98,7 +98,7 @@ fun CustomTab(
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
-                .clip(RoundedCornerShape(26.dp))
+                .clip(RoundedCornerShape(20.dp))
                 .align(Alignment.Center),
         ) {
             items.mapIndexed { index, text ->
@@ -125,15 +125,15 @@ private fun MyTabItem(
 ) {
     val tabTextColor: Color by animateColorAsState(
         targetValue = if (isSelected) {
-            Color.White
+            MaterialTheme.colorScheme.secondaryContainer
         } else {
-            Color.Black
+            MaterialTheme.colorScheme.primary
         },
         animationSpec = tween(easing = LinearEasing), label = "",
     )
     Text(
         modifier = Modifier
-            .clip(RoundedCornerShape(26.dp))
+            .clip(RoundedCornerShape(20.dp))
             .clickable {
                 onClick()
             }
@@ -165,7 +165,7 @@ private fun MyTabIndicator(
                 x = indicatorOffset,
             )
             .clip(
-                shape = RoundedCornerShape(26.dp),
+                shape = RoundedCornerShape(20.dp),
             )
             .background(
                 color = indicatorColor,

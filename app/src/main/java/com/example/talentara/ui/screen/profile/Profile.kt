@@ -161,7 +161,6 @@ fun TopBar(
             )
             Column(
                 modifier = modifier
-                    .padding(bottom = 8.dp)
                     .clip(CircleShape)
                     .background(MustardDark)
                     .clickable { },
