@@ -40,7 +40,6 @@ import com.example.talentara.R.drawable.order_unselected
 import com.example.talentara.R.drawable.profile_selected
 import com.example.talentara.R.drawable.profile_unselected
 import com.example.talentara.ui.navigation.NavigationItem
-import com.example.talentara.ui.navigation.Screen
 import com.example.talentara.ui.navigation.Screen.Activity
 import com.example.talentara.ui.navigation.Screen.Home
 import com.example.talentara.ui.navigation.Screen.Order
@@ -49,7 +48,6 @@ import com.example.talentara.ui.screen.activity.ActiviyScreen
 import com.example.talentara.ui.screen.home.HomeScreen
 import com.example.talentara.ui.screen.order.OrderScreen
 import com.example.talentara.ui.screen.profile.ProfileScreen
-import com.example.talentara.ui.screen.splashscreen.SplashScreen
 import com.example.talentara.ui.theme.TalentaraTheme
 
 @Composable
@@ -70,9 +68,6 @@ fun TalentaraApp(
             modifier = Modifier
                 .padding(innerPadding)
         ) {
-            composable(Screen.Splash.route) {
-                SplashScreen(navigateToMain = { navController.navigate(Home.route) })
-            }
             composable(Home.route) {
                 HomeScreen()
             }

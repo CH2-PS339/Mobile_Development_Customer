@@ -35,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.talentara.data.Repository
+import com.example.talentara.data.repository.Repository
 import com.example.talentara.model.CategoryItem
 import com.example.talentara.model.HomeSection
 import com.example.talentara.model.MenuCategory

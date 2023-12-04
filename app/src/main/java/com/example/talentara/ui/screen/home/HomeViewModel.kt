@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.talentara.data.Repository
+import com.example.talentara.data.repository.Repository
 
 class HomeViewModel(repository: Repository) : ViewModel() {
     private val _query = mutableStateOf("")
