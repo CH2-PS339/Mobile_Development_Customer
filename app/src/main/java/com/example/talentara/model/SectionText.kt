@@ -18,7 +18,7 @@ fun SectionText(
         text = title,
         modifier = modifier.padding(bottom = 16.dp, top = 16.dp),
         fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.ExtraBold,
         color = MaterialTheme.colorScheme.primary
     )
 }

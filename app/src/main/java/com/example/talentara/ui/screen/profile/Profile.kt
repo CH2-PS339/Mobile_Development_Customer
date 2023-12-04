@@ -149,7 +149,7 @@ fun TopBar(
             Text(
                 text = "David Revivady",
                 fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = modifier.padding(top = 8.dp)
             )

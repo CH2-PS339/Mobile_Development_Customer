@@ -140,12 +140,13 @@ private fun MyTabItem(
             .width(tabWidth)
             .padding(
                 vertical = 8.dp,
-                horizontal = 12.dp,
+                horizontal = 8.dp,
             ),
         text = text,
         color = tabTextColor,
         textAlign = TextAlign.Center,
-        fontSize = 20.sp
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
     )
 }
 

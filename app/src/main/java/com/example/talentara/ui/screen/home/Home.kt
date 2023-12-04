@@ -114,8 +114,8 @@ fun TopBar(
             text = "Hi, David",
             modifier = modifier
                 .padding(start = 24.dp, end = 24.dp),
+            fontWeight = FontWeight.ExtraBold,
             fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.secondaryContainer
         )
         Text(
@@ -187,7 +187,7 @@ fun SearchBar(
         },
         shape = RoundedCornerShape(20.dp),
         modifier = modifier
-            .padding(start = 24.dp, end = 24.dp, top = 8.dp)
+            .padding(start = 24.dp, end = 24.dp, top = 4.dp)
             .fillMaxWidth()
             .heightIn(min = 24.dp)
     ) {

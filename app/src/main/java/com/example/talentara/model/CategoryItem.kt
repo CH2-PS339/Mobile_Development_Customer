@@ -58,7 +58,7 @@ fun CategoryItem(
             Text(
                 text = stringResource(category.textCategory),
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 color = MaterialTheme.colorScheme.secondaryContainer
             )
             Image(

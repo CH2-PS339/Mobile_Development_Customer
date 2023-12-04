@@ -10,5 +10,17 @@
     <font
         android:font="@font/poppins_bold"
         android:fontStyle="normal"
-        android:fontWeight="700" />
+        android:fontWeight="900" />
+
+    <!-- SemiBold -->
+    <font
+        android:font="@font/poppins_semibold"
+        android:fontStyle="normal"
+        android:fontWeight="500" />
+
+    <!-- Italic -->
+    <font
+        android:font="@font/poppins_italic"
+        android:fontStyle="italic"
+        android:fontWeight="400"/>
 </font-family>
