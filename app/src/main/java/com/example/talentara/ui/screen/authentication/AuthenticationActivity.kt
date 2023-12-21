@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
@@ -46,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -83,6 +85,62 @@ fun AuthenticationScreen(
 }
 
 @Composable
+fun TopBar(
+    selectedTab: Int,
+    onTabSelected: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier.height(193.dp)
+    ) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(193.dp)
+                .align(Alignment.TopCenter)
+                .clip(
+                    RoundedCornerShape(
+                        bottomStart = 26.dp,
+                        bottomEnd = 26.dp
+                    )
+                )
+                .background(
+                    brush = Brush.verticalGradient(
+                        listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary
+                        )
+                    )
+                )
+        ) {
+        }
+        Column(
+            modifier = modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            horizontalAlignment = CenterHorizontally,
+        ) {
+            CustomTab(
+                items = listOf("Sign in", "Sign up"),
+                selectedItemIndex = selectedTab,
+                onClick = onTabSelected,
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SingUpPreview() {
+    TalentaraTheme {
+        SignUpTab()
+    }
+}
+
+
+
+@Composable
 fun SignUpTab(
     modifier: Modifier = Modifier
 ) {
@@ -94,6 +152,11 @@ fun SignUpTab(
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
         var showPassword by remember { mutableStateOf(false) }
+        var isError by remember { mutableStateOf(false) }
+
+        fun validate(email: String) {
+            isError = email.count() < 5
+        }
 
         Text(
             text = "Welcome Back,",
@@ -133,13 +196,19 @@ fun SignUpTab(
             },
             onValueChange = {
                 email = it
+                isError = false
             },
-            label = { Text(text = "Email address") },
+            label = { Text(text = if (isError) "Email*" else "Email Address") },
+            isError = isError,
+            keyboardActions = KeyboardActions { validate(email) },
             placeholder = { Text(text = "Enter your e-mail") },
             colors = TextFieldDefaults.colors(MaterialTheme.colorScheme.primary),
             modifier = modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
+                .semantics {
+                    if (isError) error("Email format is invalid.")
+                }
         )
         OutlinedTextField(
             value = password,
@@ -175,7 +244,15 @@ fun SignUpTab(
                 .fillMaxWidth()
                 .height(60.dp)
                 .clip(RoundedCornerShape(20.dp))
-                .background(MaterialTheme.colorScheme.primary)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
+                        )
+                    )
+                )
+                .clickable {  }
         ) {
             Text(
                 text = "Sign up",
@@ -183,7 +260,6 @@ fun SignUpTab(
                 modifier = modifier.align(alignment = Alignment.Center),
                 fontSize = 24.sp
             )
-
         }
     }
 }
@@ -268,7 +344,15 @@ fun SignInTab(
                 .fillMaxWidth()
                 .height(60.dp)
                 .clip(RoundedCornerShape(20.dp))
-                .background(MaterialTheme.colorScheme.primary)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
+                        )
+                    )
+                )
+                .clickable {  }
         ) {
             Text(
                 text = "Login",
@@ -370,7 +454,7 @@ private fun MyTabItem(
         text = text,
         color = tabTextColor,
         textAlign = TextAlign.Center,
-        fontSize = 20.sp
+        fontSize = 18.sp
     )
 }
 
@@ -396,61 +480,6 @@ private fun MyTabIndicator(
                 color = indicatorColor,
             ),
     )
-}
-
-
-@Composable
-fun TopBar(
-    selectedTab: Int,
-    onTabSelected: (Int) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier = modifier.height(193.dp)
-    ) {
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .height(193.dp)
-                .align(Alignment.TopCenter)
-                .clip(
-                    RoundedCornerShape(
-                        bottomStart = 26.dp,
-                        bottomEnd = 26.dp
-                    )
-                )
-                .background(
-                    brush = Brush.verticalGradient(
-                        listOf(
-                            MaterialTheme.colorScheme.primary,
-                            MaterialTheme.colorScheme.secondary
-                        )
-                    )
-                )
-        ) {
-        }
-        Column(
-            modifier = modifier
-                .padding(bottom = 32.dp)
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter),
-            horizontalAlignment = CenterHorizontally,
-        ) {
-            CustomTab(
-                items = listOf("Sign in", "Sign up"),
-                selectedItemIndex = selectedTab,
-                onClick = onTabSelected,
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SingUpPreview() {
-    TalentaraTheme {
-        SignUpTab()
-    }
 }
 
 @Preview(showBackground = true)

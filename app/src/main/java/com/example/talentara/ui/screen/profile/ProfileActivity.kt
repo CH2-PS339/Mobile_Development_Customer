@@ -41,7 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.talentara.R
-import com.example.talentara.model.HomeSection
+import com.example.talentara.components.TitleSection
 import com.example.talentara.ui.theme.MustardDark
 import com.example.talentara.ui.theme.TalentaraTheme
 
@@ -60,31 +60,31 @@ fun ProfileScreen(
             TopBar(painterResource(id = R.drawable.david))
         }
         item {
-            HomeSection(
+            TitleSection(
                 title = "Personal Detail",
                 content = { PersonalDetail() }
             )
         }
         item {
-            HomeSection(
+            TitleSection(
                 title = "Account Settings",
                 content = { AccountSettings() }
             )
         }
         item {
-            HomeSection(
+            TitleSection(
                 title = "Security",
                 content = { Security() }
             )
         }
         item {
-            HomeSection(
+            TitleSection(
                 title = "Application Settings",
                 content = { ApplicationSettings() }
             )
         }
         item {
-            HomeSection(
+            TitleSection(
                 title = "About Us",
                 content = { AboutUs() }
             )

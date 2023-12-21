@@ -40,11 +40,13 @@ import com.example.talentara.R.drawable.order_unselected
 import com.example.talentara.R.drawable.profile_selected
 import com.example.talentara.R.drawable.profile_unselected
 import com.example.talentara.ui.navigation.NavigationItem
+import com.example.talentara.ui.navigation.Screen
 import com.example.talentara.ui.navigation.Screen.Activity
 import com.example.talentara.ui.navigation.Screen.Home
 import com.example.talentara.ui.navigation.Screen.Order
 import com.example.talentara.ui.navigation.Screen.Profile
 import com.example.talentara.ui.screen.activity.ActiviyScreen
+import com.example.talentara.ui.screen.addproject.AddProjectScreen
 import com.example.talentara.ui.screen.home.HomeScreen
 import com.example.talentara.ui.screen.order.OrderScreen
 import com.example.talentara.ui.screen.profile.ProfileScreen
@@ -59,7 +61,11 @@ fun TalentaraApp(
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
-        bottomBar = { BottomBar(navController) },
+        bottomBar = {
+            if (currentRoute != Screen.AddProject.route) {
+                BottomBar(navController = navController)
+            }
+        },
         modifier = modifier.background(MaterialTheme.colorScheme.background)
     ) { innerPadding ->
         NavHost(
@@ -69,7 +75,7 @@ fun TalentaraApp(
                 .padding(innerPadding)
         ) {
             composable(Home.route) {
-                HomeScreen()
+                HomeScreen(navigateToAddproject = { navController.navigate(Screen.AddProject.route) })
             }
             composable(Order.route) {
                 OrderScreen()
@@ -80,14 +86,28 @@ fun TalentaraApp(
             composable(Profile.route) {
                 ProfileScreen()
             }
+            composable(Screen.AddProject.route) {
+                AddProjectScreen(
+                    navigateBack = { navController.navigateUp() },
+                    navigateBackToHome = {
+                        navController.popBackStack()
+                        navController.navigate(Home.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                inclusive = true
+                            }
+                        }
+                    },
+                )
+            }
         }
     }
 }
 
+
 @Composable
 fun BottomBar(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.secondaryContainer,

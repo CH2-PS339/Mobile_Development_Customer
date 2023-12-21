@@ -1,26 +1,19 @@
 package com.example.talentara.ui.screen.home
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.talentara.data.repository.Repository
+import com.example.talentara.data.repository.CustomerRepository
 
-class HomeViewModel(repository: Repository) : ViewModel() {
-    private val _query = mutableStateOf("")
-    val query: State<String> get() = _query
+class HomeViewModel(customerRepository: CustomerRepository) : ViewModel() {
 
-    fun search(newQuery: String) {
-        _query.value = newQuery
-    }
 }
 
-class ViewModelFactory(private val repository: Repository) :
+class ViewModelFactory(private val customerRepository: CustomerRepository) :
     ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(repository) as T
+            return HomeViewModel(customerRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

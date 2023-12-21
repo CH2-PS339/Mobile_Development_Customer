@@ -1,6 +1,6 @@
 package com.example.talentara.data.repository
 
-class Repository /*private constructor(
+class CustomerRepository /*private constructor(
     private val apiService: ApiService
 )*/ {
 

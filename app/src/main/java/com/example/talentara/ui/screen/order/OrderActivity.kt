@@ -145,7 +145,7 @@ private fun MyTabItem(
         text = text,
         color = tabTextColor,
         textAlign = TextAlign.Center,
-        fontSize = 20.sp,
+        fontSize = 18.sp,
         fontWeight = FontWeight.Bold
     )
 }
